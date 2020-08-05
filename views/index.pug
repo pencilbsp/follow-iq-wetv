@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1= title
+  form(action="/", method="post")
+    label(for="url") Link phim cần theo dõi
+    input(type="text", name="url", id="url")
+    input(type="submit", value="Gửi yêu cầu")
