@@ -1,170 +1,200 @@
 {
-  "Reunion:The Sound of the Providence  Season 1": [
+  "follower": [
     {
-      "name": "1",
-      "type": "Normal"
+      "title": "Reunion:The Sound of the Providence  Season 1",
+      "url": "https://www.iq.com/play/2ffkws2vkdd",
+      "data": [
+        {
+          "name": "1",
+          "type": "Normal"
+        },
+        {
+          "name": "2",
+          "type": "Normal"
+        },
+        {
+          "name": "3",
+          "type": "Normal"
+        },
+        {
+          "name": "4",
+          "type": "Normal"
+        },
+        {
+          "name": "5",
+          "type": "Normal"
+        },
+        {
+          "name": "6",
+          "type": "Normal"
+        },
+        {
+          "name": "7",
+          "type": "Normal"
+        },
+        {
+          "name": "8",
+          "type": "Normal"
+        },
+        {
+          "name": "9",
+          "type": "Normal"
+        },
+        {
+          "name": "10",
+          "type": "Normal"
+        },
+        {
+          "name": "11",
+          "type": "Normal"
+        },
+        {
+          "name": "12",
+          "type": "Normal"
+        },
+        {
+          "name": "13",
+          "type": "Normal"
+        },
+        {
+          "name": "14",
+          "type": "Normal"
+        },
+        {
+          "name": "15",
+          "type": "Normal"
+        },
+        {
+          "name": "16",
+          "type": "Normal"
+        },
+        {
+          "name": "17",
+          "type": "Vip"
+        },
+        {
+          "name": "18",
+          "type": "Vip"
+        },
+        {
+          "name": "19",
+          "type": "Vip"
+        },
+        {
+          "name": "20",
+          "type": "Vip"
+        },
+        {
+          "name": "21",
+          "type": "Vip"
+        },
+        {
+          "name": "22",
+          "type": "Vip"
+        },
+        {
+          "name": "23",
+          "type": "Vip"
+        },
+        {
+          "name": "24",
+          "type": "Vip"
+        },
+        {
+          "name": "25",
+          "type": "Vip"
+        },
+        {
+          "name": "26",
+          "type": "Vip"
+        },
+        {
+          "name": "27_preview",
+          "type": "Vip"
+        },
+        {
+          "name": "28_preview",
+          "type": "Vip"
+        },
+        {
+          "name": "29_preview",
+          "type": "Vip"
+        },
+        {
+          "name": "30_preview",
+          "type": "Vip"
+        },
+        {
+          "name": "31_preview",
+          "type": "Vip"
+        }
+      ]
     },
     {
-      "name": "2",
-      "type": "Normal"
-    },
-    {
-      "name": "3",
-      "type": "Normal"
-    },
-    {
-      "name": "4",
-      "type": "Normal"
-    },
-    {
-      "name": "5",
-      "type": "Normal"
-    },
-    {
-      "name": "6",
-      "type": "Normal"
-    },
-    {
-      "name": "7",
-      "type": "Normal"
-    },
-    {
-      "name": "8",
-      "type": "Normal"
-    },
-    {
-      "name": "9",
-      "type": "Normal"
-    },
-    {
-      "name": "10",
-      "type": "Normal"
-    },
-    {
-      "name": "11",
-      "type": "Normal"
-    },
-    {
-      "name": "12",
-      "type": "Normal"
-    },
-    {
-      "name": "13",
-      "type": "Normal"
-    },
-    {
-      "name": "14",
-      "type": "Vip"
-    },
-    {
-      "name": "15",
-      "type": "Vip"
-    },
-    {
-      "name": "16",
-      "type": "Vip"
-    },
-    {
-      "name": "17",
-      "type": "Vip"
-    },
-    {
-      "name": "18",
-      "type": "Vip"
-    },
-    {
-      "name": "19",
-      "type": "Vip"
-    },
-    {
-      "name": "20",
-      "type": "Vip"
-    },
-    {
-      "name": "21_preview",
-      "type": "Vip"
-    },
-    {
-      "name": "22_preview",
-      "type": "Vip"
-    },
-    {
-      "name": "23_preview",
-      "type": "Vip"
-    },
-    {
-      "name": "24_preview",
-      "type": "Vip"
-    },
-    {
-      "name": "25_preview",
-      "type": "Vip"
-    },
-    {
-      "name": "26_preview",
-      "type": "Vip"
-    }
-  ],
-  "Backstreet Rookie": [
-    {
-      "name": "1",
-      "type": "Normal"
-    },
-    {
-      "name": "2",
-      "type": "Normal"
-    },
-    {
-      "name": "3",
-      "type": "Normal"
-    },
-    {
-      "name": "4",
-      "type": "Normal"
-    },
-    {
-      "name": "5",
-      "type": "Normal"
-    },
-    {
-      "name": "6",
-      "type": "Normal"
-    },
-    {
-      "name": "7",
-      "type": "Normal"
-    },
-    {
-      "name": "8",
-      "type": "Normal"
-    },
-    {
-      "name": "9",
-      "type": "Normal"
-    },
-    {
-      "name": "10",
-      "type": "Normal"
-    },
-    {
-      "name": "11",
-      "type": "Normal"
-    },
-    {
-      "name": "12",
-      "type": "Normal"
-    },
-    {
-      "name": "13",
-      "type": "Vip"
-    },
-    {
-      "name": "14",
-      "type": "Vip"
-    },
-    {
-      "name": "15_preview",
-      "type": "Vip"
+      "title": "Backstreet Rookie",
+      "url": "https://www.iq.com/play/19rrhm35it",
+      "data": [
+        {
+          "name": "1",
+          "type": "Normal"
+        },
+        {
+          "name": "2",
+          "type": "Normal"
+        },
+        {
+          "name": "3",
+          "type": "Normal"
+        },
+        {
+          "name": "4",
+          "type": "Normal"
+        },
+        {
+          "name": "5",
+          "type": "Normal"
+        },
+        {
+          "name": "6",
+          "type": "Normal"
+        },
+        {
+          "name": "7",
+          "type": "Normal"
+        },
+        {
+          "name": "8",
+          "type": "Normal"
+        },
+        {
+          "name": "9",
+          "type": "Normal"
+        },
+        {
+          "name": "10",
+          "type": "Normal"
+        },
+        {
+          "name": "11",
+          "type": "Normal"
+        },
+        {
+          "name": "12",
+          "type": "Normal"
+        },
+        {
+          "name": "13",
+          "type": "Vip"
+        },
+        {
+          "name": "14",
+          "type": "Vip"
+        },
+        {
+          "name": "15_preview",
+          "type": "Vip"
+        }
+      ]
     }
   ]
 }

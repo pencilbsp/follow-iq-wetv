@@ -9,10 +9,14 @@ const FileSync = require('lowdb/adapters/FileSync')
 const adapter = new FileSync('db.json')
 const db = low(adapter)
 
+db.defaults({ follower: [] }).write()
+
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    res.render('index', { title: 'Express' });
+    const indexData = db.get('follower').value();
+    console.log(indexData)
+    res.render('index', { title: 'Express', data: indexData });
 });
 
 function refreshUrlData(url) {
@@ -42,31 +46,61 @@ function refreshUrlData(url) {
         })
     })
 }
+function getFullEpi(epi) {
+    return epi.filter(e => {
+        if (e.name.indexOf('preview') < 0) {
+            return e
+        }
+    })
+}
 
-router.post('/', (req, res, next) => {
+router.post('/add', (req, res, next) => {
     const url = req.body.url
     request(url, async (err, response, body) => {
         const title = body.match(/<\s*title[^>]*>(.*?)<\s*\/s*title>/)[1]
         const name = title.split('|')[0].trim();
         // Check database
-        if (db.has(name).value() == false) {
+        if (db.get('follower').find({ title: name }).value() == undefined) {
             let newEpi = await refreshUrlData(url)
-            console.log(newEpi.length)
-            db.set(name, newEpi).write();
-            res.json(newEpi)
+            db.get('follower').push({ title: name, url: url, data: newEpi}).write()
+            res.redirect('/')
         } else {
-            let oldEpi = db.get(name).value();
-            let newEpi = await refreshUrlData(url)
+            let oldEpi = getFullEpi(db.get('follower').find({ title: name }).value().data);
+            let newEpi = getFullEpi(await refreshUrlData(url))
+            // console.log(oldEpi)
             if (newEpi.length > oldEpi.length) {
-                res.send('Da co tap moi')
+                var diff = []
+                newEpi.forEach(element => {
+                    if (JSON.stringify(oldEpi).includes(JSON.stringify(element)) == false) {
+                        // Check Vip and Normal
+                        if (element.type == 'Vip') {
+                            const check = `{"name":"${element.name}","type":"Normal"}`
+                            if (JSON.stringify(oldEpi).includes(check) == true) {
+                                const mess = `${element.name} Normal change to Vip`
+                                diff.push(mess)
+                            } else {
+                                const mess = `${element.name} added`
+                                diff.push(mess)
+                            }
+                        } else {
+                            const check = `{"name":"${element.name}","type":"Vip"}`
+                            if (JSON.stringify(oldEpi).includes(check) == true) {
+                                const mess = `${element.name} Vip change to Normal`
+                                diff.push(mess)
+                            } else {
+                                const mess = `${element.name} added`
+                                diff.push(mess)
+                            }
+                        }
+                    }
+                });
+                res.redirect('/')
             } else {
-                res.send('Chua co tap moi')
+                res.redirect('/')
             }
-            // console.log(oldEpi.length)
-            // res.json(db.get(name).value())
         }
     });
-    
+
 });
 
 module.exports = router;
