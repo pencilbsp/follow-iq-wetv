@@ -2,7 +2,7 @@ doctype html
 head
   meta(charset='utf-8')
   meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
-  title Bootstrap CRUD Data Table for Database with Modal Form
+  title= title
   link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Roboto|Varela+Round')
   link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css')
   link(rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Material+Icons')
@@ -12,6 +12,13 @@ head
   script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js')
   script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js')
   script(src="/javascripts/main.js")
+.position-absolute.w-100.d-flex.flex-column.p-4
+  .toast.ml-auto(role='alert', data-delay='3000', data-autohide='true')
+    .toast-header
+      strong.mr-auto.text-primary Thông báo
+      button.ml-2.mb-1.close(type='button', data-dismiss='toast', aria-label='Close')
+        span(aria-hidden='true') &times;
+    .toast-body
 .container-xl
   .table-responsive
     .table-wrapper
@@ -35,8 +42,8 @@ head
                 label(for='selectAll')
             th Tên
             th Url
-            th Số tập
-            th Phone
+            th Số tập hiện có
+            th Giờ thông báo
             th Actions
         tbody
           each item in data
@@ -49,39 +56,25 @@ head
                 td= item.title
                 td= item.url
                 td= count
-                td (171) 555-2222
+                td= item.time
                 td
-                  a.edit(href='#editEmployeeModal', data-toggle='modal')
+                  a.edit(href='#editEmployeeModal', data-tl=item.title, data-url=item.url, data-toggle='modal')
                     i.material-icons(data-toggle='tooltip', title='Edit') &#xE254;
-                  a.delete(href='#deleteEmployeeModal', data-toggle='modal')
+                  a.delete(href='#deleteEmployeeModal', data-tl=item.title, data-toggle='modal')
                     i.material-icons(data-toggle='tooltip', title='Delete') &#xE872;
       .clearfix
-        .hint-text
-          | Showing 
-          b 5
-          |  out of 
-          b 25
-          |  entries
         ul.pagination
           li.page-item.disabled
             a(href='#') Previous
-          li.page-item
+          li.page-item.active
             a.page-link(href='#') 1
           li.page-item
-            a.page-link(href='#') 2
-          li.page-item.active
-            a.page-link(href='#') 3
-          li.page-item
-            a.page-link(href='#') 4
-          li.page-item
-            a.page-link(href='#') 5
-          li.page-item
             a.page-link(href='#') Next
-// Edit Modal HTML
+// Add Modal HTML
 #addEmployeeModal.modal.fade
   .modal-dialog
     .modal-content
-      form(action='/add', method='POST')
+      form
         .modal-header
           h4.modal-title Add Employee
           button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
@@ -89,9 +82,12 @@ head
           .form-group
             label Url
             input.form-control(type='text', name='url' required)
+          .form-group
+            label Giờ nhận thông báo
+            input.form-control(type='time', name='time', value='13:45:00')
         .modal-footer
           input.btn.btn-default(type='button', data-dismiss='modal', value='Cancel')
-          input.btn.btn-success(type='submit', value='Add')
+          input.btn.btn-success(type='button', data-dismiss='modal', value='Add')
 // Edit Modal HTML
 #editEmployeeModal.modal.fade
   .modal-dialog
@@ -103,16 +99,13 @@ head
         .modal-body
           .form-group
             label Name
-            input.form-control(type='text', required='')
+            input.form-control(type='text', name='name', required)
           .form-group
-            label Email
-            input.form-control(type='email', required='')
+            label Url
+            input.form-control(type='text', name='url', required)
           .form-group
-            label Address
-            textarea.form-control(required='')
-          .form-group
-            label Phone
-            input.form-control(type='text', required='')
+            label Giờ nhận thông báo
+            input.form-control(type='time', value='13:45:00')
         .modal-footer
           input.btn.btn-default(type='button', data-dismiss='modal', value='Cancel')
           input.btn.btn-info(type='submit', value='Save')
@@ -130,4 +123,4 @@ head
             small This action cannot be undone.
         .modal-footer
           input.btn.btn-default(type='button', data-dismiss='modal', value='Cancel')
-          input.btn.btn-danger(type='submit', value='Delete')
+          input.btn.btn-danger(type='button', data-dismiss='modal', value='Delete')

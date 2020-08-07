@@ -1,8 +1,8 @@
 {
   "follower": [
     {
-      "title": "Reunion:The Sound of the Providence  Season 1",
-      "url": "https://www.iq.com/play/2ffkws2vkdd",
+      "title": "In a Class of Her Own",
+      "url": "https://www.iq.com/play/19rrhl9ewd",
       "data": [
         {
           "name": "1",
@@ -62,11 +62,11 @@
         },
         {
           "name": "15",
-          "type": "Normal"
+          "type": "Vip"
         },
         {
           "name": "16",
-          "type": "Normal"
+          "type": "Vip"
         },
         {
           "name": "17",
@@ -85,116 +85,46 @@
           "type": "Vip"
         },
         {
-          "name": "21",
+          "name": "21_preview",
           "type": "Vip"
         },
         {
-          "name": "22",
+          "name": "22_preview",
           "type": "Vip"
         },
         {
-          "name": "23",
+          "name": "23_preview",
           "type": "Vip"
         },
         {
-          "name": "24",
-          "type": "Vip"
-        },
-        {
-          "name": "25",
-          "type": "Vip"
-        },
-        {
-          "name": "26",
-          "type": "Vip"
-        },
-        {
-          "name": "27_preview",
-          "type": "Vip"
-        },
-        {
-          "name": "28_preview",
-          "type": "Vip"
-        },
-        {
-          "name": "29_preview",
-          "type": "Vip"
-        },
-        {
-          "name": "30_preview",
-          "type": "Vip"
-        },
-        {
-          "name": "31_preview",
+          "name": "24_preview",
           "type": "Vip"
         }
-      ]
+      ],
+      "time": "19:00"
     },
     {
-      "title": "Backstreet Rookie",
-      "url": "https://www.iq.com/play/19rrhm35it",
+      "title": "Flower of Evil",
+      "url": "https://www.iq.com/play/2ffkws2qwt9",
       "data": [
         {
           "name": "1",
-          "type": "Normal"
+          "type": "Vip"
         },
         {
           "name": "2",
-          "type": "Normal"
+          "type": "Vip"
         },
         {
           "name": "3",
-          "type": "Normal"
+          "type": "Vip"
         },
         {
           "name": "4",
           "type": "Normal"
-        },
-        {
-          "name": "5",
-          "type": "Normal"
-        },
-        {
-          "name": "6",
-          "type": "Normal"
-        },
-        {
-          "name": "7",
-          "type": "Normal"
-        },
-        {
-          "name": "8",
-          "type": "Normal"
-        },
-        {
-          "name": "9",
-          "type": "Normal"
-        },
-        {
-          "name": "10",
-          "type": "Normal"
-        },
-        {
-          "name": "11",
-          "type": "Normal"
-        },
-        {
-          "name": "12",
-          "type": "Normal"
-        },
-        {
-          "name": "13",
-          "type": "Vip"
-        },
-        {
-          "name": "14",
-          "type": "Vip"
-        },
-        {
-          "name": "15_preview",
-          "type": "Vip"
         }
-      ]
+      ],
+      "time": "19:00"
     }
   ]
 }
