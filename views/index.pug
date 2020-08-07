@@ -1,126 +1,126 @@
 doctype html
 head
-  meta(charset='utf-8')
-  meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
-  title= title
-  link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Roboto|Varela+Round')
-  link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css')
-  link(rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Material+Icons')
-  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
-  link(rel='stylesheet', href='/stylesheets/style.css')
-  script(src='https://code.jquery.com/jquery-3.5.1.min.js')
-  script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js')
-  script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js')
-  script(src="/javascripts/main.js")
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    title= title
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Roboto|Varela+Round')
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Material+Icons')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='https://code.jquery.com/jquery-3.5.1.min.js')
+    script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js')
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js')
+    script(src="/javascripts/main.js")
 .position-absolute.w-100.d-flex.flex-column.p-4
-  .toast.ml-auto(role='alert', data-delay='3000', data-autohide='true')
-    .toast-header
-      strong.mr-auto.text-primary Thông báo
-      button.ml-2.mb-1.close(type='button', data-dismiss='toast', aria-label='Close')
-        span(aria-hidden='true') &times;
-    .toast-body
+    .toast.ml-auto(role='alert', data-delay='3000', data-autohide='true')
+        .toast-header
+            strong.mr-auto.text-primary Thông báo
+            button.ml-2.mb-1.close(type='button', data-dismiss='toast', aria-label='Close')
+                span(aria-hidden='true') &times;
+        .toast-body
 .container-xl
-  .table-responsive
-    .table-wrapper
-      .table-title
-        .row
-          .col-sm-6
-            h2 Manage Follow
-          .col-sm-6
-            a.btn.btn-success(href='#addEmployeeModal', data-toggle='modal')
-              i.material-icons &#xE147;
-              span Add New Follow
-            a.btn.btn-danger(href='#deleteEmployeeModal', data-toggle='modal')
-              i.material-icons &#xE15C;
-              span Delete
-      table.table.table-striped.table-hover
-        thead
-          tr
-            th
-              span.custom-checkbox
-                input#selectAll(type='checkbox')
-                label(for='selectAll')
-            th Tên
-            th Url
-            th Số tập hiện có
-            th Giờ thông báo
-            th Actions
-        tbody
-          each item in data
-            - var count = item.data.length
-              tr
-                td
-                  span.custom-checkbox
-                    input#checkbox1(type='checkbox', name='options[]', value='1')
-                    label(for='checkbox1')
-                td= item.title
-                td= item.url
-                td= count
-                td= item.time
-                td
-                  a.edit(href='#editEmployeeModal', data-tl=item.title, data-url=item.url, data-toggle='modal')
-                    i.material-icons(data-toggle='tooltip', title='Edit') &#xE254;
-                  a.delete(href='#deleteEmployeeModal', data-tl=item.title, data-toggle='modal')
-                    i.material-icons(data-toggle='tooltip', title='Delete') &#xE872;
-      .clearfix
-        ul.pagination
-          li.page-item.disabled
-            a(href='#') Previous
-          li.page-item.active
-            a.page-link(href='#') 1
-          li.page-item
-            a.page-link(href='#') Next
+    .table-responsive
+        .table-wrapper
+            .table-title
+                .row
+                    .col-sm-6
+                        h2 Manage Follow
+                    .col-sm-6
+                        a.btn.btn-success(href='#addEmployeeModal', data-toggle='modal')
+                            i.material-icons &#xE147;
+                            span Add New Follow
+                        a.btn.btn-danger(href='#deleteEmployeeModal', data-toggle='modal')
+                            i.material-icons &#xE15C;
+                            span Delete
+            table.table.table-striped.table-hover
+                thead
+                    tr
+                        th
+                            span.custom-checkbox
+                                input#selectAll(type='checkbox')
+                                label(for='selectAll')
+                        th Tên
+                        th Url
+                        th Số tập hiện có
+                        th Giờ thông báo
+                        th Actions
+                tbody
+                    each item in data
+                        - var count = item.data.length
+                            tr
+                                td
+                                    span.custom-checkbox
+                                        input#checkbox1(type='checkbox', name='options[]', value='1')
+                                        label(for='checkbox1')
+                                td= item.title
+                                td= item.url
+                                td= count
+                                td= item.time
+                                td
+                                    a.edit(href='#editEmployeeModal', data-tl=item.title, data-url=item.url, data-toggle='modal')
+                                        i.material-icons(data-toggle='tooltip', title='Edit') &#xE254;
+                                    a.delete(href='#deleteEmployeeModal', data-tl=item.title, data-toggle='modal')
+                                        i.material-icons(data-toggle='tooltip', title='Delete') &#xE872;
+            .clearfix
+                ul.pagination
+                    li.page-item.disabled
+                        a(href='#') Previous
+                    li.page-item.active
+                        a.page-link(href='#') 1
+                    li.page-item
+                        a.page-link(href='#') Next
 // Add Modal HTML
 #addEmployeeModal.modal.fade
-  .modal-dialog
-    .modal-content
-      form
-        .modal-header
-          h4.modal-title Add Employee
-          button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
-        .modal-body
-          .form-group
-            label Url
-            input.form-control(type='text', name='url' required)
-          .form-group
-            label Giờ nhận thông báo
-            input.form-control(type='time', name='time', value='13:45:00')
-        .modal-footer
-          input.btn.btn-default(type='button', data-dismiss='modal', value='Cancel')
-          input.btn.btn-success(type='button', data-dismiss='modal', value='Add')
+    .modal-dialog
+        .modal-content
+            form
+                .modal-header
+                    h4.modal-title Add Employee
+                    button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
+                .modal-body
+                    .form-group
+                        label Url
+                        input.form-control(type='text', name='url' required)
+                    .form-group
+                        label Giờ nhận thông báo
+                        input.form-control(type='time', name='time', value='13:45:00')
+                .modal-footer
+                    input.btn.btn-default(type='button', data-dismiss='modal', value='Cancel')
+                    input.btn.btn-success(type='button', data-dismiss='modal', value='Add')
 // Edit Modal HTML
 #editEmployeeModal.modal.fade
-  .modal-dialog
-    .modal-content
-      form
-        .modal-header
-          h4.modal-title Edit Employee
-          button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
-        .modal-body
-          .form-group
-            label Name
-            input.form-control(type='text', name='name', required)
-          .form-group
-            label Url
-            input.form-control(type='text', name='url', required)
-          .form-group
-            label Giờ nhận thông báo
-            input.form-control(type='time', value='13:45:00')
-        .modal-footer
-          input.btn.btn-default(type='button', data-dismiss='modal', value='Cancel')
-          input.btn.btn-info(type='submit', value='Save')
+    .modal-dialog
+        .modal-content
+            form
+                .modal-header
+                    h4.modal-title Edit Employee
+                    button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
+                .modal-body
+                    .form-group
+                        label Name
+                        input.form-control(type='text', name='name', required)
+                    .form-group
+                        label Url
+                        input.form-control(type='text', name='url', required)
+                    .form-group
+                        label Giờ nhận thông báo
+                        input.form-control(type='time', value='13:45:00')
+                .modal-footer
+                    input.btn.btn-default(type='button', data-dismiss='modal', value='Cancel')
+                    input.btn.btn-info(type='submit', value='Save')
 // Delete Modal HTML
 #deleteEmployeeModal.modal.fade
-  .modal-dialog
-    .modal-content
-      form
-        .modal-header
-          h4.modal-title Delete Employee
-          button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
-        .modal-body
-          p Are you sure you want to delete these Records?
-          p.text-warning
-            small This action cannot be undone.
-        .modal-footer
-          input.btn.btn-default(type='button', data-dismiss='modal', value='Cancel')
-          input.btn.btn-danger(type='button', data-dismiss='modal', value='Delete')
+    .modal-dialog
+        .modal-content
+            form
+                .modal-header
+                    h4.modal-title Delete Employee
+                    button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
+                .modal-body
+                    p Are you sure you want to delete these Records?
+                    p.text-warning
+                        small This action cannot be undone.
+                .modal-footer
+                    input.btn.btn-default(type='button', data-dismiss='modal', value='Cancel')
+                    input.btn.btn-danger(type='button', data-dismiss='modal', value='Delete')

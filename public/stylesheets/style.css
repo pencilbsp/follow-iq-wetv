@@ -12,9 +12,9 @@ body {
     padding: 20px 25px;
     border-radius: 3px;
     min-width: 1000px;
-    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
-.table-title {        
+.table-title {
     padding-bottom: 15px;
     background: #435d7d;
     color: #fff;
@@ -50,7 +50,8 @@ body {
     float: left;
     margin-top: 2px;
 }
-table.table tr th, table.table tr td {
+table.table tr th,
+table.table tr td {
     border-color: #e9e9e9;
     padding: 12px 15px;
     vertical-align: middle;
@@ -71,7 +72,7 @@ table.table th i {
     font-size: 13px;
     margin: 0 5px;
     cursor: pointer;
-}	
+}
 table.table td:last-child i {
     opacity: 0.9;
     font-size: 22px;
@@ -85,13 +86,13 @@ table.table td a {
     outline: none !important;
 }
 table.table td a:hover {
-    color: #2196F3;
+    color: #2196f3;
 }
 table.table td a.edit {
-    color: #FFC107;
+    color: #ffc107;
 }
 table.table td a.delete {
-    color: #F44336;
+    color: #f44336;
 }
 table.table td i {
     font-size: 19px;
@@ -119,11 +120,12 @@ table.table .avatar {
 }
 .pagination li a:hover {
     color: #666;
-}	
-.pagination li.active a, .pagination li.active a.page-link {
-    background: #03A9F4;
 }
-.pagination li.active a:hover {        
+.pagination li.active a,
+.pagination li.active a.page-link {
+    background: #03a9f4;
+}
+.pagination li.active a:hover {
     background: #0397d6;
 }
 .pagination li.disabled i {
@@ -131,24 +133,24 @@ table.table .avatar {
 }
 .pagination li i {
     font-size: 16px;
-    padding-top: 6px
+    padding-top: 6px;
 }
 .hint-text {
     float: left;
     margin-top: 10px;
     font-size: 13px;
-}    
+}
 /* Custom checkbox */
 .custom-checkbox {
     position: relative;
 }
-.custom-checkbox input[type="checkbox"] {    
+.custom-checkbox input[type='checkbox'] {
     opacity: 0;
     position: absolute;
     margin: 5px 0 0 3px;
     z-index: 9;
 }
-.custom-checkbox label:before{
+.custom-checkbox label:before {
     width: 18px;
     height: 18px;
 }
@@ -163,7 +165,7 @@ table.table .avatar {
     box-sizing: border-box;
     z-index: 2;
 }
-.custom-checkbox input[type="checkbox"]:checked + label:after {
+.custom-checkbox input[type='checkbox']:checked + label:after {
     content: '';
     position: absolute;
     left: 6px;
@@ -176,14 +178,14 @@ table.table .avatar {
     z-index: 3;
     transform: rotateZ(45deg);
 }
-.custom-checkbox input[type="checkbox"]:checked + label:before {
-    border-color: #03A9F4;
-    background: #03A9F4;
+.custom-checkbox input[type='checkbox']:checked + label:before {
+    border-color: #03a9f4;
+    background: #03a9f4;
 }
-.custom-checkbox input[type="checkbox"]:checked + label:after {
+.custom-checkbox input[type='checkbox']:checked + label:after {
     border-color: #fff;
 }
-.custom-checkbox input[type="checkbox"]:disabled + label:before {
+.custom-checkbox input[type='checkbox']:disabled + label:before {
     color: #b8b8b8;
     cursor: auto;
     box-shadow: none;
@@ -193,7 +195,9 @@ table.table .avatar {
 .modal .modal-dialog {
     max-width: 400px;
 }
-.modal .modal-header, .modal .modal-body, .modal .modal-footer {
+.modal .modal-header,
+.modal .modal-body,
+.modal .modal-footer {
     padding: 20px 30px;
 }
 .modal .modal-content {
@@ -218,7 +222,7 @@ table.table .avatar {
 .modal .btn {
     border-radius: 2px;
     min-width: 100px;
-}	
+}
 .modal form label {
     font-weight: normal;
 }
