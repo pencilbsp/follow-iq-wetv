@@ -10,7 +10,7 @@ const urlData = require('./refresh');
 const getEpi = require('./epi');
 
 var job = new CronJob(
-    '*/5 * * * * *',
+    '1 * * * * *',
     () => {
         var dataLoop = db.get('follower').map('url').value();
         refreshNewEpi(dataLoop);
