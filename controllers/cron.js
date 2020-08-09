@@ -1,5 +1,6 @@
 const CronJob = require('cron').CronJob;
 const low = require('lowdb');
+const request = require('request');
 const FileSync = require('lowdb/adapters/FileSync');
 const adapter = new FileSync('./db.json');
 const db = low(adapter);
@@ -9,7 +10,7 @@ const getData = require('./getData');
 const getEpi = require('./epi');
 
 var job = new CronJob(
-    '*/5 * * * * *',
+    '1 * * * * *',
     () => {
         var dataLoop = db.get('follower').map('url').value();
         refreshNewEpi(dataLoop);
