@@ -45,7 +45,7 @@ module.exports.add = async (req, res) => {
                         time: req.body.time,
                     })
                     .write();
-                const htmlCode = `<tr><td><span class="custom-checkbox"><input id="checkbox1" type="checkbox" name="options[]" value="1"><label for="checkbox1"></label></span></td><td>${name}</td><td>${urlRaw}</td><td>${newEpi.length}</td><td>${req.body.time}</td><td><a class="edit" href="#editEmployeeModal" data-tl="${name}" data-url="${urlRaw}" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit"></i></a><a class="delete" href="#deleteEmployeeModal" data-tl="${name}" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete"></i></a></td></tr>`;
+                const htmlCode = `<tr><td class="name">${name}</td><td class="url"><a href="${urlRaw}" target="_blank">${urlRaw}</a></td><td>${newEpi.length}</td><td>${req.body.time}</td><td><a class="edit" href="#editEmployeeModal" data-tl="${name}" data-url="${urlRaw}" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit"></i></a><a class="delete" href="#deleteEmployeeModal" data-tl="${name}" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete"></i></a></td></tr>`;
                 const messNew = `[${namePage}] Phim ${name} đã được thêm vào danh sách theo dõi với ${newEpi.length} tập mới!`
                 // request(`${process.env.TELEGRAM_URL}${encodeURI(messNew)}`);
                 res.json({

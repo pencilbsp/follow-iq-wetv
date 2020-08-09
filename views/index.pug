@@ -35,9 +35,9 @@ head
                     tr
                         td(class='name') Tên
                         td(class='url') Url
-                        td(class='count') Số tập hiện có
-                        td(class='time') Giờ thông báo
-                        td(class='action') Actions
+                        td Số tập hiện có
+                        td Giờ thông báo
+                        td Actions
                 tbody
                     each item in data
                         - var count = item.data.length
@@ -45,9 +45,9 @@ head
                                 td(class='name') #{item.title}
                                 td(class='url')
                                     a(href= item.url, target="_blank") #{item.url}
-                                td(class='count') #{count}
-                                td(class='time') #{item.time}
-                                td(class='action')
+                                td #{count}
+                                td #{item.time}
+                                td
                                     a.edit(href='#editEmployeeModal', data-tl=item.title, data-url=item.url, data-toggle='modal')
                                         i.material-icons(data-toggle='tooltip', title='Edit') &#xE254;
                                     a.delete(href='#deleteEmployeeModal', data-tl=item.title, data-toggle='modal')
