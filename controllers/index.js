@@ -22,14 +22,33 @@ module.exports.add = async (req, res) => {
     if (namePage == 'www.iq.com') {
         var name = await getTitle.iq(urlRaw);
         var newEpi = getEpi.full(await getData.iq(urlRaw));
+        getIndex(name, newEpi);
     } else if (namePage == 'fptplay.vn') {
         var name = await getTitle.fptplay(urlRaw);
         var newEpi = await getData.fptplay(urlRaw);
+        getIndex(name, newEpi);
     } else if (namePage == 'wetv.vip') {
         console.log('wetv.vip')
     } else {
         res.json({ mess: 'Url bạn nhập sai hoặc chưa được hỗ trợ!' })
     }
+};
+
+module.exports.delete = (req, res) => {
+    if (db.get('follower').remove({ title: req.body.title }).write()) {
+        res.status(200).json({
+            mess: `Phim ${req.body.title} đã được xóa khỏi danh sách theo dõi!`
+        });
+    } else {
+        res.status(500).json({
+            mess: `Đã có lỗi xảy ra, vui lòng thử lại sau!`
+        });
+    }
+};
+
+module.exports.adit = (req, res) => { };
+
+function getIndex(name, newEpi) {
     try {
         if (db.get('follower').find({ title: name }).value() == undefined) {
             if (newEpi === 'error') {
@@ -61,18 +80,4 @@ module.exports.add = async (req, res) => {
     } catch (error) {
         res.json({ mess: 'Url bạn nhập sai hoặc chưa được hỗ trợ!' });
     }
-};
-
-module.exports.delete = (req, res) => {
-    if (db.get('follower').remove({ title: req.body.title }).write()) {
-        res.status(200).json({
-            mess: `Phim ${req.body.title} đã được xóa khỏi danh sách theo dõi!`
-        });
-    } else {
-        res.status(500).json({
-            mess: `Đã có lỗi xảy ra, vui lòng thử lại sau!`
-        });
-    }
-};
-
-module.exports.adit = (req, res) => { };
+}
