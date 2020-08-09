@@ -56,11 +56,14 @@ table.table tr td {
     padding: 12px 15px;
     vertical-align: middle;
 }
-table.table tr th:first-child {
-    width: 60px;
+.toast.show {
+    z-index: 100;
 }
-table.table tr th:last-child {
-    width: 100px;
+.name {
+    width: 25%;
+}
+.url {
+    width: 35%;
 }
 table.table-striped tbody tr:nth-of-type(odd) {
     background-color: #fcfcfc;

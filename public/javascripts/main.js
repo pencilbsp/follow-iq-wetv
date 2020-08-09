@@ -12,6 +12,8 @@ $(document).ready(function () {
                     (data, status) => {
                         if (status == 'success') {
                             $($this.parents('tr')).remove();
+                            $('.toast-body').text(data.mess);
+                            $('.toast').toast('show');
                         }
                     }
                 );
@@ -47,25 +49,6 @@ $(document).ready(function () {
         } else {
             $('.toast-body').text('Url không được để trống!');
             $('.toast').toast('show');
-        }
-    });
-
-    // Select/Deselect checkboxes
-    var checkbox = $('table tbody input[type="checkbox"]');
-    $('#selectAll').click(function () {
-        if (this.checked) {
-            checkbox.each(function () {
-                this.checked = true;
-            });
-        } else {
-            checkbox.each(function () {
-                this.checked = false;
-            });
-        }
-    });
-    checkbox.click(function () {
-        if (!this.checked) {
-            $('#selectAll').prop('checked', false);
         }
     });
 });
