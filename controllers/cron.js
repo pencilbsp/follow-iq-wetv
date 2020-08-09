@@ -66,9 +66,10 @@ function refreshNewEpi(dataLoop) {
             const messNew = `[${namePage}] Phim ${name} đã thêm ${diffNew.length} tập mới: ${diffNew.join(', ')}`
             const messChangeVip = `[${namePage}] ${diffChangeVip.length} tập ${diffChangeVip.join(', ')} phim ${name} đã chuyển Vip sang Normal`
             const messChangeNormal = `[${namePage}] ${diffChangeNormal.length} tập ${diffChangeNormal.join(', ')} phim ${name} đã chuyển Normal sang Vip`
-            if (diffNew.length > 0) request(`${process.env.TELEGRAM_URL}${encodeURI(messNew)}`);
-            if (diffChangeVip.length > 0) request(`${process.env.TELEGRAM_URL}${encodeURI(messChangeVip)}`);
-            if (diffChangeNormal.length > 0) request(`${process.env.TELEGRAM_URL}${encodeURI(messChangeNormal)}`);
+            console.log(messNew)
+            // if (diffNew.length > 0) request(`${process.env.TELEGRAM_URL}${encodeURI(messNew)}`);
+            // if (diffChangeVip.length > 0) request(`${process.env.TELEGRAM_URL}${encodeURI(messChangeVip)}`);
+            // if (diffChangeNormal.length > 0) request(`${process.env.TELEGRAM_URL}${encodeURI(messChangeNormal)}`);
             db.get('follower')
                 .find({ url: itemLoop })
                 .assign({ data: newEpi })
