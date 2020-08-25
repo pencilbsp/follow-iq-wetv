@@ -70,6 +70,8 @@ function refreshNewEpi(dataLoop) {
             if (diffNew.length > 0) request(`${process.env.TELEGRAM_URL}${encodeURI(messNew)}`);
             if (diffChangeVip.length > 0) request(`${process.env.TELEGRAM_URL}${encodeURI(messChangeVip)}`);
             if (diffChangeNormal.length > 0) request(`${process.env.TELEGRAM_URL}${encodeURI(messChangeNormal)}`);
+        } else {
+            db.get('follower').find({ url: itemLoop }).assign({ data: newEpi }).write();
         }
     });
 }
