@@ -40,9 +40,12 @@ module.exports.fptplay = url => {
                 //     console.log(element.url[0])
                 // });
                 const listEpi = miniJson.filter(e => {
-                    if (e.is_trailer == 0) return e
+                    const isRaw = e.title.split(' ')[2]
+                    if (e.is_trailer == 0 && isRaw == undefined) return e
+                    console.log(e.title)
                 }).map(o => {
                     if (o.url[0].require_login == 0 && o.url[0].require_vip_plan[0] === undefined) {
+                        console.log(o.title)
                         return {
                             name: o.title.split(' ')[1],
                             type: 'Normal',
