@@ -64,8 +64,8 @@ function refreshNewEpi(dataLoop) {
                 }
             })
             await DB_S.findByIdAndUpdate(itemLoop._id, { data: newEpi }, err => {
-                // if (err) request(`${process.env.TELEGRAM_URL}${encodeURI('Xảy ra lỗi khi lưu dữ liệu mới!')}`)
-                if (err) console.log('Xảy ra lỗi khi lưu dữ liệu mới!')
+                if (err) request(`${process.env.TELEGRAM_URL}${encodeURI('Xảy ra lỗi khi lưu dữ liệu mới!')}`)
+                // if (err) console.log('Xảy ra lỗi khi lưu dữ liệu mới!')
                 if (diffNew.length > 0) {
                     const messNew = `[${namePage}] Phim ${name} đã thêm ${diffNew.length} tập mới: ${diffNew.join(', ')}`
                     // console.log(messNew)
