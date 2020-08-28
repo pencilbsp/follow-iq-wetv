@@ -40,25 +40,26 @@ module.exports.fptplay = url => {
                 //     console.log(element.title)
                 // });
                 const listEpi = miniJson.filter(e => {
-                    const isRaw = e.title.split(' ')[2]
+                    const isRaw = e.title.indexOf('Raw')
+                    const isPreview = e.title.indexOf('Preview')
                     let byPass
-                    if (isRaw === '(VIP)') {
-                        byPass = 1
-                    } else if (isRaw === undefined) {
-                        byPass = 1
-                    } else {
+                    if (isRaw > 0) {
                         byPass = 0
+                    } else if (isPreview > 0) {
+                        byPass = 0
+                    } else {
+                        byPass = 1
                     }
                     if (e.is_trailer === 0 && byPass === 1) return e
                 }).map(o => {
                     if (o.url[0].require_login === 0 && o.url[0].require_vip_plan[0] === undefined) {
                         return {
-                            name: o.title.split(' ')[1],
+                            name: o.title.match(/\d+[A-F]?/g)[0],
                             type: 'Normal',
                         }
                     } else if (o.url[0].require_login === 1 && o.url[0].require_vip_plan[0]) {
                         return {
-                            name: o.title.split(' ')[1],
+                            name: o.title.match(/\d+[A-F]?/g)[0],
                             type: 'Vip',
                         }
                     }

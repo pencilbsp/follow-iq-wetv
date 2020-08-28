@@ -51,35 +51,37 @@ function refreshNewEpi(dataLoop) {
                         } else {
                             diffNew.push(element.name)
                         }
-                    } else if (element.type === 'Normal') {
+                    } else {
                         const check = `{"name":"${element.name}","type":"Vip"}`
                         if (JSON.stringify(oldEpi).includes(check) == true) {
                             diffChangeVip.push(element.name)
                         } else {
                             diffNew.push(element.name)
                         }
-                    } else {
-
                     }
                 }
             })
             await DB_S.findByIdAndUpdate(itemLoop._id, { data: newEpi }, err => {
-                if (err) request(`${process.env.TELEGRAM_URL}${encodeURI('Xảy ra lỗi khi lưu dữ liệu mới!')}`)
-                // if (err) console.log('Xảy ra lỗi khi lưu dữ liệu mới!')
-                if (diffNew.length > 0) {
-                    const messNew = `[${namePage}] Phim ${name} đã thêm ${diffNew.length} tập mới: ${diffNew.join(', ')}`
-                    // console.log(messNew)
-                    request(`${process.env.TELEGRAM_URL}${encodeURI(messNew)}`)
-                }
-                if (diffChangeVip.length > 0) {
-                    const messChangeVip = `[${namePage}] ${diffChangeVip.length} tập ${diffChangeVip.join(', ')} phim ${name} đã chuyển Vip sang Normal`
-                    // console.log(messChangeVip)
-                    request(`${process.env.TELEGRAM_URL}${encodeURI(messChangeVip)}`)
-                }
-                if (diffChangeNormal.length > 0) {
-                    const messChangeNormal = `[${namePage}] ${diffChangeNormal.length} tập ${diffChangeNormal.join(', ')} phim ${name} đã chuyển Normal sang Vip`
-                    // console.log(messChangeNormal)
-                    request(`${process.env.TELEGRAM_URL}${encodeURI(messChangeNormal)}`)
+                if (err) {
+                    request(`${process.env.TELEGRAM_URL}${encodeURI('Xảy ra lỗi khi lưu dữ liệu mới!')}`)
+                    // if (err) console.log('Xảy ra lỗi khi lưu dữ liệu mới!')
+                } else {
+
+                    if (diffNew.length > 0) {
+                        const messNew = `[${namePage}] Phim ${name} đã thêm ${diffNew.length} tập mới: ${diffNew.join(', ')}`
+                        // console.log(messNew)
+                        request(`${process.env.TELEGRAM_URL}${encodeURI(messNew)}`)
+                    }
+                    if (diffChangeVip.length > 0) {
+                        const messChangeVip = `[${namePage}] ${diffChangeVip.length} tập ${diffChangeVip.join(', ')} phim ${name} đã chuyển Vip sang Normal`
+                        // console.log(messChangeVip)
+                        request(`${process.env.TELEGRAM_URL}${encodeURI(messChangeVip)}`)
+                    }
+                    if (diffChangeNormal.length > 0) {
+                        const messChangeNormal = `[${namePage}] ${diffChangeNormal.length} tập ${diffChangeNormal.join(', ')} phim ${name} đã chuyển Normal sang Vip`
+                        // console.log(messChangeNormal)
+                        request(`${process.env.TELEGRAM_URL}${encodeURI(messChangeNormal)}`)
+                    }
                 }
             })
         } else if (newEpi.length < oldEpi.length) {
