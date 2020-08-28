@@ -7,7 +7,8 @@ $(document).ready(function () {
                 $.post(
                     '/delete',
                     {
-                        title: $this.attr('data-tl'),
+                        id: $this.attr('data-id'),
+                        title: $this.attr('data-tl')
                     },
                     (data, status) => {
                         if (status == 'success') {
@@ -19,7 +20,7 @@ $(document).ready(function () {
                 );
             });
         } else if ($this.hasClass('edit')) {
-            $('input[name="name"]').val($this.attr('data-tl'));
+            $('input[name="name"]').val($this.attr('data-id'));
             $('input[name="url"]').val($this.attr('data-url'));
             $('input[name="time"]').val($this.attr('data-time'));
         }

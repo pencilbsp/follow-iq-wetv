@@ -37,20 +37,26 @@ module.exports.fptplay = url => {
                 const dataRaw = JSON.parse(dataFromUrl)
                 const miniJson = dataRaw.data[0].result.episodes
                 // miniJson.forEach(element => {
-                //     console.log(element.url[0])
+                //     console.log(element.title)
                 // });
                 const listEpi = miniJson.filter(e => {
                     const isRaw = e.title.split(' ')[2]
-                    if (e.is_trailer == 0 && isRaw == undefined) return e
-                    console.log(e.title)
+                    let byPass
+                    if (isRaw === '(VIP)') {
+                        byPass = 1
+                    } else if (isRaw === undefined) {
+                        byPass = 1
+                    } else {
+                        byPass = 0
+                    }
+                    if (e.is_trailer === 0 && byPass === 1) return e
                 }).map(o => {
-                    if (o.url[0].require_login == 0 && o.url[0].require_vip_plan[0] === undefined) {
-                        console.log(o.title)
+                    if (o.url[0].require_login === 0 && o.url[0].require_vip_plan[0] === undefined) {
                         return {
                             name: o.title.split(' ')[1],
                             type: 'Normal',
                         }
-                    } else if (o.url[0].require_login == 1 && o.url[0].require_vip_plan[0]) {
+                    } else if (o.url[0].require_login === 1 && o.url[0].require_vip_plan[0]) {
                         return {
                             name: o.title.split(' ')[1],
                             type: 'Vip',

@@ -12,5 +12,4 @@ package-lock.json
 *.gz
 coverage
 benchmarks/graphs
-.env
 db.json

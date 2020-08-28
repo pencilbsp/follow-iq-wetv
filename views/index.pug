@@ -48,9 +48,9 @@ head
                                 td #{count}
                                 td #{item.time}
                                 td
-                                    a.edit(href='#editEmployeeModal', data-tl=item.title, data-url=item.url, data-toggle='modal')
+                                    a.edit(href='#editEmployeeModal', data-id=item._id, data-url=item.url, data-toggle='modal')
                                         i.material-icons(data-toggle='tooltip', title='Edit') &#xE254;
-                                    a.delete(href='#deleteEmployeeModal', data-tl=item.title, data-toggle='modal')
+                                    a.delete(href='#deleteEmployeeModal', data-id=item._id, data-tl=item.title, data-toggle='modal')
                                         i.material-icons(data-toggle='tooltip', title='Delete') &#xE872;
             .clearfix
 // Add Modal HTML
