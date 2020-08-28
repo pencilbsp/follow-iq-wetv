@@ -46,14 +46,14 @@ function refreshNewEpi(dataLoop) {
                     // Check Vip and Normal
                     if (element.type === 'Vip') {
                         const check = `{"name":"${element.name}","type":"Normal"}`
-                        if (JSON.stringify(oldEpi).includes(check) == true) {
+                        if (JSON.stringify(oldEpi).includes(check) === true) {
                             diffChangeNormal.push(element.name)
                         } else {
                             diffNew.push(element.name)
                         }
                     } else {
                         const check = `{"name":"${element.name}","type":"Vip"}`
-                        if (JSON.stringify(oldEpi).includes(check) == true) {
+                        if (JSON.stringify(oldEpi).includes(check) === true) {
                             diffChangeVip.push(element.name)
                         } else {
                             diffNew.push(element.name)
@@ -94,6 +94,8 @@ function refreshNewEpi(dataLoop) {
             if (change.length > 0) {
                 await DB_S.findByIdAndUpdate(itemLoop._id, { data: newEpi })
             }
+        } else if (newEpi.length === 0) {
+            request(`${process.env.TELEGRAM_URL}${encodeURI('Reupload')}`)
         }
     })
 }

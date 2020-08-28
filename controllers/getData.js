@@ -54,7 +54,7 @@ module.exports.fptplay = url => {
                 }).map(o => {
                     if (o.url[0].require_login === 0 && o.url[0].require_vip_plan[0] === undefined) {
                         return {
-                            name: o.title.match(/\d+[A-F]?/g)[0],
+                            name: o.title.match(/\d+[A-Z]?/g)[0],
                             type: 'Normal',
                         }
                     } else if (o.url[0].require_login === 1 && o.url[0].require_vip_plan[0]) {
