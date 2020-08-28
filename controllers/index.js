@@ -19,15 +19,17 @@ module.exports.add = async (req, res) => {
     const urlRaw = req.body.url
     namePage = urlRaw.split('/')[2]
     if (namePage == 'www.iq.com') {
-        var name = await getTitle.iq(urlRaw)
-        var newEpi = getEpi.full(await getData.iq(urlRaw))
+        let name = await getTitle.iq(urlRaw)
+        let newEpi = getEpi.full(await getData.iq(urlRaw))
         res.json(await getIndex(name, newEpi, urlRaw, req.body.time))
     } else if (namePage == 'fptplay.vn') {
-        var name = await getTitle.fptplay(urlRaw)
-        var newEpi = await getData.fptplay(urlRaw)
+        let name = await getTitle.fptplay(urlRaw)
+        let newEpi = await getData.fptplay(urlRaw)
         res.json(await getIndex(name, newEpi, urlRaw, req.body.time))
     } else if (namePage == 'wetv.vip') {
-        console.log('wetv.vip')
+        let name = await getTitle.fptplay(urlRaw)
+        let newEpi = await getData.wetv(urlRaw)
+        res.json(await getIndex(name, newEpi, urlRaw, req.body.time))
     } else {
         res.json({ mess: 'Url bạn nhập sai hoặc chưa được hỗ trợ!' })
     }

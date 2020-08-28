@@ -71,3 +71,31 @@ module.exports.fptplay = url => {
         })
     })
 }
+
+module.exports.wetv = url => {
+    return new Promise((resolve, reject) => {
+        request(url, (err, res, body) => {
+            if (err) return reject('error')
+            try {
+                const bodyNoneSpace = body.replace(/[\s]+/g, '')
+                const dataRaw = bodyNoneSpace.match(/<adata-vid=".*?"class="video_episode.*?<\/a>/g)
+                const epi = dataRaw.map(e => {
+                    const epiName = e.match(/<span>(\d+)<\/span>/)[1]
+                    let type = 'Normal'
+                    if (e.indexOf('VIP') > 0) {
+                        type = 'Vip'
+                    } else if (e.indexOf('FastTrack') > 0) {
+                        type = 'Vip+'
+                    }
+                    return {
+                        name: epiName,
+                        type: type
+                    }
+                })
+                return resolve(epi)
+            } catch (error) {
+                return resolve('error')
+            }
+        })
+    })
+}

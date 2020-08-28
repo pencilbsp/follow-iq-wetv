@@ -10,7 +10,7 @@ const getData = require('./getData')
 const getEpi = require('./epi')
 
 var job = new CronJob(
-    '1 * * * * *',
+    '* * * * * *',
     async () => {
         var dataLoop = await DB_S.find({}).select('url')
         refreshNewEpi(dataLoop)
@@ -30,7 +30,7 @@ function refreshNewEpi(dataLoop) {
         } else if (namePage == 'fptplay.vn') {
             var newEpi = await getData.fptplay(itemLoop.url)
         } else if (namePage == 'wetv.vip') {
-            console.log('wetv.vip')
+            var newEpi = await getData.wetv(itemLoop.url)
         } else {
             res.json({ mess: 'Url bạn nhập sai hoặc chưa được hỗ trợ!' })
         }
@@ -41,20 +41,30 @@ function refreshNewEpi(dataLoop) {
             let diffNew = []
             let diffChangeVip = []
             let diffChangeNormal = []
+            let diffChangeVipPlus = []
+            let _diffChangeVipPlus = []
             newEpi.forEach((element) => {
                 if (JSON.stringify(oldEpi).includes(JSON.stringify(element)) == false) {
                     // Check Vip and Normal
                     if (element.type === 'Vip') {
                         const check = `{"name":"${element.name}","type":"Normal"}`
+                        const checkPlus = `{"name":"${element.name}","type":"Vip+"}`
                         if (JSON.stringify(oldEpi).includes(check) === true) {
                             diffChangeNormal.push(element.name)
+                        } else if (JSON.stringify(oldEpi).includes(checkPlus) === true) {
+                            diffChangeVipPlus.push(element.name)
                         } else {
                             diffNew.push(element.name)
                         }
+                    } else if (element.type === 'Vip+') {
+                        diffNew.push(element.name)
                     } else {
                         const check = `{"name":"${element.name}","type":"Vip"}`
+                        const checkPlus = `{"name":"${element.name}","type":"Vip+"}`
                         if (JSON.stringify(oldEpi).includes(check) === true) {
                             diffChangeVip.push(element.name)
+                        }  else if (JSON.stringify(oldEpi).includes(checkPlus) === true) {
+                            _diffChangeVipPlus.push(element.name)
                         } else {
                             diffNew.push(element.name)
                         }
@@ -79,6 +89,16 @@ function refreshNewEpi(dataLoop) {
                     }
                     if (diffChangeNormal.length > 0) {
                         const messChangeNormal = `[${namePage}] ${diffChangeNormal.length} tập ${diffChangeNormal.join(', ')} phim ${name} đã chuyển Normal sang Vip`
+                        // console.log(messChangeNormal)
+                        request(`${process.env.TELEGRAM_URL}${encodeURI(messChangeNormal)}`)
+                    }
+                    if (diffChangeVipPlus.length > 0) {
+                        const messChangeNormal = `[${namePage}] ${diffChangeVipPlus.length} tập ${diffChangeVipPlus.join(', ')} phim ${name} đã chuyển Fast Track sang Vip`
+                        // console.log(messChangeNormal)
+                        request(`${process.env.TELEGRAM_URL}${encodeURI(messChangeNormal)}`)
+                    }
+                    if (_diffChangeVipPlus.length > 0) {
+                        const messChangeNormal = `[${namePage}] ${_diffChangeVipPlus.length} tập ${_diffChangeVipPlus.join(', ')} phim ${name} đã chuyển Fast Track sang Normal`
                         // console.log(messChangeNormal)
                         request(`${process.env.TELEGRAM_URL}${encodeURI(messChangeNormal)}`)
                     }

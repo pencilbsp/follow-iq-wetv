@@ -1,13 +1,13 @@
-const array = [1, 2, 3, 4, 5];
+const fs = require('fs')
 
-array.forEach((el, i) => {
-    setTimeout(() => {
-        console.log(el);
-    }, i*1000);
-});
-
-// for (const el of array) {
-//     setTimeout(() => {
-//         console.log(el);
-//     }, 1000);
-// }
+const  doc = fs.readFileSync('./test.html', 'utf-8')
+const nonSpace = doc.replace(/[\s]+/g, '')
+const data = nonSpace.match(/<adata-vid=".*?"class="video_episode.*?<\/a>/g)
+data.forEach(e => {
+    const epiName = e.match(/<span>(\d+)<\/span>/)
+    let type = 'Normal'
+    if (e.indexOf('VIP') > 0) {
+        type = 'Vip'
+    }
+    console.log(epiName[1], type)
+})
