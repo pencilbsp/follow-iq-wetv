@@ -9,9 +9,6 @@ const dataSchema = new mongoose.Schema({
     },
     data: {
         type: Array
-    },
-    time: {
-        type: String
     }
 })
 

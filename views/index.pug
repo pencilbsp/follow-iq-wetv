@@ -36,7 +36,6 @@ head
                         td(class='name') Tên
                         td(class='url') Url
                         td Số tập hiện có
-                        td Giờ thông báo
                         td Actions
                 tbody
                     each item in data
@@ -46,7 +45,6 @@ head
                                 td(class='url')
                                     a(href= item.url, target="_blank") #{item.url}
                                 td #{count}
-                                td #{item.time}
                                 td
                                     a.edit(href='#editEmployeeModal', data-id=item._id, data-url=item.url, data-toggle='modal')
                                         i.material-icons(data-toggle='tooltip', title='Edit') &#xE254;
@@ -65,9 +63,6 @@ head
                     .form-group
                         label Url
                         input.form-control(type='text', name='url' required)
-                    .form-group
-                        label Giờ nhận thông báo
-                        input.form-control(type='time', name='time', value='00:00')
                 .modal-footer
                     input.btn.btn-default(type='button', data-dismiss='modal', value='Cancel')
                     input.btn.btn-success(type='button', data-dismiss='modal', value='Add')
@@ -86,9 +81,6 @@ head
                     .form-group
                         label Url
                         input.form-control(type='text', name='url', required)
-                    .form-group
-                        label Giờ nhận thông báo
-                        input.form-control(type='time', value='13:45:00')
                 .modal-footer
                     input.btn.btn-default(type='button', data-dismiss='modal', value='Cancel')
                     input.btn.btn-info(type='submit', value='Save')
