@@ -7,7 +7,7 @@ module.exports.iq = url => {
             try {
                 const dataFromUrl = body.match(/<li juji-order="(\d+)" class="v-li drama [selected]*">(.*?)<\/li>/gm);
                 const epi = dataFromUrl.map((e) => {
-                    return e.match(/rseat="(\w+)"/)
+                    return e.match(/rseat="(\w+)"/)[1]
                 });
                 resolve(epi);
             } catch (error) {
