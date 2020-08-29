@@ -60,10 +60,10 @@ table.table tr td {
     z-index: 100;
 }
 .name {
-    width: 25%;
+    width: 35%;
 }
 .url {
-    width: 35%;
+    width: 45%;
 }
 table.table-striped tbody tr:nth-of-type(odd) {
     background-color: #fcfcfc;

@@ -62,11 +62,10 @@ async function getIndex(name, newEpi, url, time) {
             const newFollow = new DB_S({
                 title: name,
                 url: url,
-                data: newEpi,
-                time: time
+                data: newEpi
             })
             await newFollow.save()
-            const htmlCode = `<tr><td class="name">${name}</td><td class="url"><a href="${url}" target="_blank">${url}</a></td><td>${newEpi.length}</td><td>${time}</td><td><a class="edit" href="#editEmployeeModal" data-url="${url}" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit"></i></a><a class="delete" href="#deleteEmployeeModal" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete"></i></a></td></tr>`
+            const htmlCode = `<tr><td class="name">${name}</td><td class="url"><a href="${url}" target="_blank">${url}</a></td><td>${newEpi.length}</td><td><a class="edit" href="#editEmployeeModal" data-url="${url}" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit"></i></a><a class="delete" href="#deleteEmployeeModal" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete"></i></a></td></tr>`
             return {
                 mess: `Phim ${name} đã được thêm vào danh sách theo dõi!`,
                 html: htmlCode,

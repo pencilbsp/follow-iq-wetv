@@ -22,19 +22,16 @@ $(document).ready(function () {
         } else if ($this.hasClass('edit')) {
             $('input[name="name"]').val($this.attr('data-id'));
             $('input[name="url"]').val($this.attr('data-url'));
-            $('input[name="time"]').val($this.attr('data-time'));
         }
     });
 
     $('#addEmployeeModal input.btn.btn-success').on('click', () => {
         var url = $('#addEmployeeModal input[name="url"]').val();
-        var time = $('#addEmployeeModal input[name="time"]').val();
         if (url) {
             $.post(
                 '/add',
                 {
-                    url: url,
-                    time: time,
+                    url: url
                 },
                 (data, status) => {
                     if (status == 'success') {
