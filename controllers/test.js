@@ -1,13 +1,20 @@
-const fs = require('fs')
-
-const  doc = fs.readFileSync('./test.html', 'utf-8')
-const nonSpace = doc.replace(/[\s]+/g, '')
-const data = nonSpace.match(/<adata-vid=".*?"class="video_episode.*?<\/a>/g)
-data.forEach(e => {
-    const epiName = e.match(/<span>(\d+)<\/span>/)
-    let type = 'Normal'
-    if (e.indexOf('VIP') > 0) {
-        type = 'Vip'
-    }
-    console.log(epiName[1], type)
+const mongoose = require('mongoose')
+require('dotenv').config()
+mongoose.connect(process.env.MONGOBD_URL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, () => {
+    console.log('Connected to MongoDB')
 })
+const DB = require('../model/model')
+const { index } = require('.')
+
+
+
+async function getEpi() {
+    const newEpi = ['1', '2', '3A']
+    const { data } = await DB.findById('5f4a723bcc17936d5300f693', { data: 1 })
+    const diff = data.filter(e => {
+        newEpi.includes(e)
+    })
+    console.log(diff)
+}
+
+getEpi()

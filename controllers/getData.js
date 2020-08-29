@@ -7,18 +7,7 @@ module.exports.iq = url => {
             try {
                 const dataFromUrl = body.match(/<li juji-order="(\d+)" class="v-li drama [selected]*">(.*?)<\/li>/gm);
                 const epi = dataFromUrl.map((e) => {
-                    const eNumber = e.match(/rseat="(\w+)"/);
-                    if (eNumber.input.indexOf('card_vip_icon') > 0) {
-                        return {
-                            name: eNumber[1],
-                            type: 'Vip',
-                        };
-                    } else {
-                        return {
-                            name: eNumber[1],
-                            type: 'Normal',
-                        };
-                    }
+                    return e.match(/rseat="(\w+)"/)
                 });
                 resolve(epi);
             } catch (error) {
@@ -52,17 +41,7 @@ module.exports.fptplay = url => {
                     }
                     if (e.is_trailer === 0 && byPass === 1) return e
                 }).map(o => {
-                    if (o.url[0].require_login === 0 && o.url[0].require_vip_plan[0] === undefined) {
-                        return {
-                            name: o.title.match(/\d+[A-Z]?/g)[0],
-                            type: 'Normal',
-                        }
-                    } else if (o.url[0].require_login === 1 && o.url[0].require_vip_plan[0]) {
-                        return {
-                            name: o.title.match(/\d+[A-F]?/g)[0],
-                            type: 'Vip',
-                        }
-                    }
+                    return o.title.match(/\d+[A-Z]?/g)[0]
                 })
                 resolve(listEpi)
             } catch (error) {
@@ -80,17 +59,7 @@ module.exports.wetv = url => {
                 const bodyNoneSpace = body.replace(/[\s]+/g, '')
                 const dataRaw = bodyNoneSpace.match(/<adata-vid=".*?"class="video_episode.*?<\/a>/g)
                 const epi = dataRaw.map(e => {
-                    const epiName = e.match(/<span>(\d+)<\/span>/)[1]
-                    let type = 'Normal'
-                    if (e.indexOf('VIP') > 0) {
-                        type = 'Vip'
-                    } else if (e.indexOf('FastTrack') > 0) {
-                        type = 'Vip+'
-                    }
-                    return {
-                        name: epiName,
-                        type: type
-                    }
+                    return e.match(/<span>(\d+)<\/span>/)[1]
                 })
                 return resolve(epi)
             } catch (error) {
