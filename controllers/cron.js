@@ -30,7 +30,8 @@ function refreshNewEpi(dataLoop) {
         } else if (namePage == 'fptplay.vn') {
             var newEpi = await getData.fptplay(itemLoop.url)
         } else if (namePage == 'wetv.vip') {
-            var newEpi = await getData.wetv(itemLoop.url)
+            proxyUrl = process.env.PROXY_URL + itemLoop.url
+            var newEpi = await getData.wetv(proxyUrl)
         } else {
             res.json({ mess: 'Url bạn nhập sai hoặc chưa được hỗ trợ!' })
         }
