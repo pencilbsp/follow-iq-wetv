@@ -27,7 +27,7 @@ module.exports.add = async (req, res) => {
         let newEpi = await getData.fptplay(urlRaw)
         res.json(await getIndex(name, newEpi, urlRaw, req.body.time))
     } else if (namePage == 'wetv.vip') {
-        const proxyUrl = process.env.PROXY_URL + itemLoop.url
+        const proxyUrl = process.env.PROXY_URL + urlRaw
         let name = await getTitle.fptplay(proxyUrl)
         let newEpi = await getData.wetv(proxyUrl)
         res.json(await getIndex(name, newEpi, urlRaw, req.body.time))
