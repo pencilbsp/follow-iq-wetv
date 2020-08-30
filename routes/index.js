@@ -8,6 +8,6 @@ router.post('/add', controller.add);
 
 router.post('/delete', controller.delete);
 
-router.post('/edit', controller.adit);
+router.post('/edit', controller.edit);
 
 module.exports = router;

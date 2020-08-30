@@ -20,8 +20,26 @@ $(document).ready(function () {
                 );
             });
         } else if ($this.hasClass('edit')) {
-            $('input[name="name"]').val($this.attr('data-id'));
+            $('input[name="name"]').val($this.attr('data-tl'));
             $('input[name="url"]').val($this.attr('data-url'));
+            $('input.btn.btn-info').on('click', (event) => {
+                const newTitle = $('#editEmployeeModal input[name="name"]').val()
+                $.post(
+                    '/edit',
+                    {
+                        id: $this.attr('data-id'),
+                        title: $this.attr('data-tl'),
+                        newTitle: newTitle
+                    },
+                    (data, status) => {
+                        // const oldName = $this.parents('tr td.name')
+                        if (status == 'success') {
+                            $('.toast-body').text(data.mess);
+                            $('.toast').toast('show');
+                        }
+                    }
+                )
+            })
         }
     });
 

@@ -50,7 +50,26 @@ module.exports.delete = (req, res) => {
     })
 }
 
-module.exports.adit = (req, res) => { }
+module.exports.edit = async (req, res) => {
+    const newTitle = req.body.newTitle
+    if ((newTitle.trim() !== '') && (newTitle !== req.body.title)) {
+        await DB_S.findByIdAndUpdate(req.body.id, {title: newTitle}, (err, data) => {
+            if (err) {
+                res.status(500).json({
+                    mess: `Đã có lỗi xảy ra, vui lòng thử lại sau!`
+                })
+            } else if (data) {
+                res.status(200).json({
+                    mess: `Phim ${req.body.title} đã được đổi tên thành ${newTitle}`
+                })
+            }
+        })
+    } else {
+        res.status(200).json({
+            mess: `Tên mới không được để trống và phải khác tên cũ!`
+        })
+    }
+}
 
 async function getIndex(name, newEpi, url, time) {
     const item = await DB_S.find({ title: name })
