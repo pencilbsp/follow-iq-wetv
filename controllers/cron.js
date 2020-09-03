@@ -38,9 +38,7 @@ function refreshNewEpi(dataLoop) {
         const data = await DB_S.findById(itemLoop._id)
         const oldEpi = data.data
         const name = data.title
-        if ((oldEpi.length === 0) || (newEpi.length === 0)) {
-            console.log('Tất cả các tập phim đã bị xoá hoạc phim chưa có tập phim nào!')
-        } else if (newEpi.length >= oldEpi.length) {
+        if (newEpi.length > oldEpi.length) {
             const diff = newEpi.filter(e => {
                 const check = oldEpi.includes(e)
                 if (check === false) return e
@@ -55,19 +53,21 @@ function refreshNewEpi(dataLoop) {
                     }
                 })
             }
-        } else if (newEpi.length < oldEpi.length) {
+        } else if (newEpi.length <= oldEpi.length) {
             const diff = oldEpi.filter(e => {
                 const check = newEpi.includes(e)
                 if (check === false) return e
             })
-            await DB_S.findByIdAndUpdate(itemLoop._id, { data: newEpi }, err => {
-                if (err) {
-                    request(`${process.env.TELEGRAM_URL}${encodeURI('Xảy ra lỗi khi lưu dữ liệu mới!')}`)
-                } else {
-                    const messNew = `[${namePage}] Phim ${name} đã xoá ${diff.length} tập: ${diff.join(', ')}`
-                    request(`${process.env.TELEGRAM_URL}${encodeURI(messNew)}`)
-                }
-            })
+            if (diff.length > 0) {
+                await DB_S.findByIdAndUpdate(itemLoop._id, { data: newEpi }, err => {
+                    if (err) {
+                        request(`${process.env.TELEGRAM_URL}${encodeURI('Xảy ra lỗi khi lưu dữ liệu mới!')}`)
+                    } else {
+                        const messNew = `[${namePage}] Phim ${name} đã xoá ${diff.length} tập: ${diff.join(', ')}`
+                        request(`${process.env.TELEGRAM_URL}${encodeURI(messNew)}`)
+                    }
+                })
+            }
         }
     })
 }
