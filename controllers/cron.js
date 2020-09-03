@@ -53,7 +53,7 @@ function refreshNewEpi(dataLoop) {
                     }
                 })
             }
-        } else if (newEpi.length <= oldEpi.length) {
+        } else if (newEpi.length < oldEpi.length) {
             const diff = oldEpi.filter(e => {
                 const check = newEpi.includes(e)
                 if (check === false) return e
@@ -67,6 +67,14 @@ function refreshNewEpi(dataLoop) {
                         request(`${process.env.TELEGRAM_URL}${encodeURI(messNew)}`)
                     }
                 })
+            }
+        } else if (newEpi.length === oldEpi.length) {
+            const diff = oldEpi.filter(e => {
+                const check = newEpi.includes(e)
+                if (check === false) return e
+            })
+            if (diff.length > 0) {
+                await DB_S.findByIdAndUpdate(itemLoop._id, { data: newEpi })
             }
         }
     })
