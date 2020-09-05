@@ -58,7 +58,7 @@ function refreshNewEpi(dataLoop) {
                 const check = newEpi.includes(e)
                 if (check === false) return e
             })
-            if (diff.length > 0) {
+            if (diff.length > 0 && diff.length !== oldEpi.length) {
                 await DB_S.findByIdAndUpdate(itemLoop._id, { data: newEpi }, err => {
                     if (err) {
                         request(`${process.env.TELEGRAM_URL}${encodeURI('Xảy ra lỗi khi lưu dữ liệu mới!')}`)
@@ -73,7 +73,7 @@ function refreshNewEpi(dataLoop) {
                 const check = newEpi.includes(e)
                 if (check === false) return e
             })
-            if (diff.length > 0) {
+            if (diff.length > 0 && diff.length !== oldEpi.length) {
                 await DB_S.findByIdAndUpdate(itemLoop._id, { data: newEpi })
             }
         }

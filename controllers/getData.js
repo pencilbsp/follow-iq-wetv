@@ -8,7 +8,7 @@ module.exports.iq = url => {
                 const dataFromUrl = body.match(/<li juji-order="(\d+)" class="v-li drama [selected]*">(.*?)<\/li>/gm);
                 const epi = dataFromUrl.map((e) => {
                     return e.match(/rseat="(\w+)"/)[1]
-                });
+                }).filter(e => !e.includes('preview'));
                 resolve(epi);
             } catch (error) {
                 resolve('error');
@@ -29,8 +29,8 @@ module.exports.fptplay = url => {
                 //     console.log(element.title)
                 // });
                 const listEpi = miniJson.filter(e => {
-                    const isRaw = e.title.indexOf('Raw')
-                    const isPreview = e.title.indexOf('Preview')
+                    const isRaw = e.title.toLowerCase().indexOf('raw')
+                    const isPreview = e.title.toLowerCase().indexOf('preview')
                     let byPass
                     if (isRaw > 0) {
                         byPass = 0
