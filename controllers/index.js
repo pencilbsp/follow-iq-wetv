@@ -3,7 +3,6 @@ require('dotenv').config()
 
 const getData = require('./getData')
 const getTitle = require('./getTitle')
-const getEpi = require('./epi')
 
 mongoose.connect(process.env.MONGOBD_URL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, () => {
     console.log('Connected to MongoDB')
@@ -20,7 +19,7 @@ module.exports.add = async (req, res) => {
     namePage = urlRaw.split('/')[2]
     if (namePage == 'www.iq.com') {
         let name = await getTitle.iq(urlRaw)
-        let newEpi = getEpi.full(await getData.iq(urlRaw))
+        let newEpi = await getData.iq(urlRaw)
         res.json(await getIndex(name, newEpi, urlRaw, req.body.time))
     } else if (namePage == 'fptplay.vn') {
         let name = await getTitle.fptplay(urlRaw)

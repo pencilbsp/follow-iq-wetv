@@ -7,7 +7,6 @@ mongoose.connect(process.env.MONGOBD_URL, { useNewUrlParser: true, useUnifiedTop
 const DB_S = require('../model/model')
 
 const getData = require('./getData')
-const getEpi = require('./epi')
 
 var job = new CronJob(
     '1 * * * * *',
@@ -26,7 +25,7 @@ function refreshNewEpi(dataLoop) {
     dataLoop.forEach(async (itemLoop) => {
         const namePage = itemLoop.url.split('/')[2]
         if (namePage == 'www.iq.com') {
-            var newEpi = getEpi.full(await getData.iq(itemLoop.url))
+            var newEpi = await getData.iq(itemLoop.url)
         } else if (namePage == 'fptplay.vn') {
             var newEpi = await getData.fptplay(itemLoop.url)
         } else if (namePage == 'wetv.vip') {
