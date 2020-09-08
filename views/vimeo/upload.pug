@@ -1,0 +1,11 @@
+extends index
+
+block content
+    .container
+        h1 Remote Upload
+        form(method='post')
+            .mb-3
+                label.form-label(for='formGroupExampleInput') Phim ID
+                input#formGroupExampleInput.form-control(type='text', name='movieId' placeholder='Example input placeholder')
+            .col-12
+                button(type='submit' class='btn btn-primary') Remote

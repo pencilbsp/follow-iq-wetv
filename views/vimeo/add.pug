@@ -1,0 +1,14 @@
+extends index
+
+block content
+    .container
+        h1 Add Account
+        form(method='post')
+            .mb-3
+                label.form-label(for='formGroupExampleInput') User ID
+                input#formGroupExampleInput.form-control(type='text', name='userId' placeholder='Example input placeholder')
+            .mb-3
+                label.form-label(for='formGroupExampleInput2') Authen Key
+                input#formGroupExampleInput2.form-control(type='password', name='userAuthKey' placeholder='Another input placeholder')
+            .col-12
+                button(type='submit' class='btn btn-primary') Thêm
