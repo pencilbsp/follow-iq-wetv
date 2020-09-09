@@ -1,54 +1,56 @@
-const mongoose = require('mongoose')
-require('dotenv').config()
 const axios = require('axios')
+const cryptoRandomString = require('crypto-random-string')
+const path = require('path')
+require('dotenv').config({ path: path.resolve(__dirname, '../../.env') })
 
-mongoose.connect(process.env.MONGOBD_URL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, () => {
-    console.log('Connected to MongoDB')
-})
-const DB = require('../../model/acc')
-const { response } = require('express')
+const getFileMeta = require('./get-file-meta')
+const getToken = require('./get-token')
+const acceptVideoType = ['video/mp4', 'video/x-matroska', 'video/avi']
 
-module.exports.account = async (req, res) => {
-    const accounts = await DB.find({})
-    res.render('vimeo/list', {
-        accounts: accounts
-    })
+async function vimeoUpload(userId, userAuthKey, videoId) {
+    const { fileSize, iconLink, videoMediaMetadata } = await getFileMeta(videoId)
+    const { access_token } = await getToken()
+    // Kiểm tra định dạng file
+    if (fileSize && acceptVideoType.includes(iconLink.split('/type/')[1])) {
+        const apiUri = 'https://api.vimeo.com/users/' + userId + '/videos'
+        const directUrl = 'https://www.googleapis.com/drive/v3/files/' + videoId + '?alt=media'
+        return axios({
+            method: 'POST',
+            url: apiUri,
+            headers: {
+                'Accept': 'application/vnd.vimeo.video;version=3.2',
+                'Authorization': 'Bearer ' + userAuthKey,
+                'Content-Type': 'application/json'
+            },
+            data: {
+                'type': 'pull',
+                'link': directUrl,
+                'headers': {
+                    'authorization': 'Bearer ' + access_token
+                },
+                'size': fileSize,
+                'name': 'PhePhim@' + cryptoRandomString({ length: 20, characters: videoId })
+            }
+        }).then(res => {
+            if (res.status === 200) return res.data
+        }).catch(err => err.response.statusText)
+    } else {
+        if (iconLink) return 'Định dạng file ' + iconLink.split('/type/')[1] + ' không được hỗ trợ!'
+        return 'File không tồn tại hoặc chưa được chia sẻ!'
+    }
 }
 
-module.exports.index = (req, res) => {
-    res.render('vimeo/index')
+async function vimeoState(cookie, vimeoId) {
+    return axios({
+        method: 'GET',
+        url: 'https://vimeo.com/manage/' + vimeoId + '/services/status',
+        headers: {
+            'Cookie': cookie,
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    }).then(res => {
+        if (res.status === 200) return res.data
+    }).catch(err => err.response.status)
 }
 
-module.exports.upload = (req, res) => {
-    res.render('vimeo/upload')
-}
-module.exports.uploadPost = (req, res) => {
-    const id = req.body.movieId
-    axios.get(process.env.PHEPHIM_GET + id)
-        .then(response => {
-            const ep = response.data.trim().split('<br/>')
-            ep.pop()
-            const epArr = ep.map(e => {
-                return {
-                    name: e.split('|')[0],
-                    id: e.split('|')[1],
-                    videoId: e.split('|')[3].split('/')[5],
-                    vimeo: e.includes('https://vimeo.com') ? true : false
-                }
-            })
-            res.json(epArr)
-        })
-}
-
-module.exports.add = (req, res) => {
-    res.render('vimeo/add')
-}
-module.exports.addPost = async (req, res) => {
-    const newAccount = new DB({
-        userId: req.body.userId,
-        authKey: req.body.userAuthKey
-    })
-    await newAccount.save(err => {
-        if (!err) res.redirect('/vimeo/accounts')
-    })
-}
+module.exports = { vimeoUpload, vimeoState }

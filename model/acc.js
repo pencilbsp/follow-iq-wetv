@@ -9,7 +9,7 @@ const vimeoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    status: {
+    active: {
         type: Boolean
     }
 })
