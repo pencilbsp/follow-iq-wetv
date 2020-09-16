@@ -34,10 +34,12 @@ function refreshNewEpi(dataLoop) {
         } else {
             res.json({ mess: 'Url bạn nhập sai hoặc chưa được hỗ trợ!' })
         }
+        if (newEpi === 'error') return
         const data = await DB_S.findById(itemLoop._id)
         const oldEpi = data.data
         const name = data.title
         if (newEpi.length > oldEpi.length) {
+            console.log(newEpi)
             const diff = newEpi.filter(e => {
                 const check = oldEpi.includes(e)
                 if (check === false) return e
